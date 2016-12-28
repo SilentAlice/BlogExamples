@@ -1,6 +1,6 @@
 /* Demo: Kernel Module 
  * Post: http://silentming.net/blog/2016/12/28/kernel-module/
- * This is kernel module under GPL License
+ * This kernel module is under GPL License
  *
  * Compile:
  * make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
