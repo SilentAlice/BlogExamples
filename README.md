@@ -4,6 +4,7 @@ See posts on [SilentMing's Gensokyo][1]. Most of them are written in **Chinese**
 * `Xen_Log_2` - Build HVM Domain: Xen Config files
 * `Xen_Log_3` - Add New Hypercall to Xen: Kernel module code
 * `Xen_Log_8` - Grant Table: sharing memory between domU and dom0 using grant table
+* `Xen_Log_9` - I/O Ring: Using xen io ring struct to communicate
 * others - Other examples in posts, self-descripted by dir name
 
 
