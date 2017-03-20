@@ -11,17 +11,16 @@
  * This Module is running in dom0 to write/read info to/from xenstore
  */
 
-#include <linux/module.h>
-#include <linux/moduleparam.h>
-#include <linux/kernel.h>
+#include <linux/module.h>           /* Needed by all modules */
+//#include <linux/moduleparam.h>      /* Param, dont need here indeed */
+//#include <linux/kernel.h>           /* KERN_WARN etc */
 
-#include <xen/xen.h>
-#include <xen/events.h>
-#include <xen/interface/io/xs_wire.h>
+//#include <xen/xen.h>                /* Included by events.h */
+#include <xen/events.h>             /* Event channel */
+#include <xen/interface/io/xs_wire.h>   /* interface */
 
-#include <asm/xen/page.h>
-#include <asm/xen/hypercall.h>
-#include <asm/xen/hypervisor.h>
+#include <asm/xen/page.h>               /* gfn_to_virt & mfn_to_gfn */
+//#include <asm/xen/hypercall.h>        /* Included by events */
 
 /* Notify backend */
 #define NOTIFY()\
