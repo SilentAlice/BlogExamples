@@ -8,6 +8,7 @@ See posts on [SilentMing's Gensokyo][1]. Most of them are written in **Chinese**
 * `Xen_Log_12` - Event Channel: Using Event Channel in Guest
 * `Xen_Log_13` - XenStore: kernel module read/write info from/to xenstore
 * `Xen_Log_14` - PV Driver: Simplest split driver
+* `Xen_Log_15` - XenBus: Add xenbus state to PV Driver
 * others - Other examples in posts, self-descripted by dir name
 
 
