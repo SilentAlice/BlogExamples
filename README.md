@@ -11,5 +11,4 @@ See posts on [SilentMing's Gensokyo][1]. Most of them are written in **Chinese**
 * `Xen_Log_15` - XenBus: Add xenbus state to PV Driver
 * others - Other examples in posts, self-descripted by dir name
 
-
 [1]: http://silentming.net/blog/categories/virtualization/
