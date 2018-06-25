@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
-
 		<meta charset="utf-8" />
-
 		<title>Introduction to Virtualization 0</title>
-
-  <style>
+		<style>
 			body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 h1, h2, h3 {
 	font-weight: 400;
 	margin-bottom: 0;
@@ -72,11 +67,8 @@ code {
 }
 
 		</style>
-
 	</head>
-
 	<body>
-
 		<textarea id="source">
 # Introduction to Virtualization 0 #
 
@@ -84,16 +76,20 @@ By SilentMing
 
 Blog: http://silentming.net
 
-[Slides](http://silentming/slides/virtualization-intro-0.html)
+[Slides](https://silentming.net/BlogExamples/virtualization-intro/virtualization-intro-0-slides.html#1)
+
+<!-- more -->
 
 ---
 
 ## Story Line ##
 
 * Brief introduction to virtualization
- * (Defination, histroy ...)
+ * (Definition, histroy ...)
+
 * Classification
  * (Spectrum)
+
 * Architecture on ARM (Type-2 Hypervisor)
  * (It's simple, but only cover partial)
 
@@ -105,7 +101,9 @@ Blog: http://silentming.net
 resources of the underlying layer or system on which it is implemented
 
 - Abstraction – to simplify the use of the underlying resource (e.g., by removing details of the resource’s structure)
+
 - Replication – to create multiple instances of the resource (e.g., to simplify management or allocation)
+
 - Isolation – to separate the uses which clients make of the underlying resources (e.g., to improve security)
 
 ---
@@ -133,26 +131,28 @@ Histroy
 
 ## Why Virtualization ##
 
-- Consolidation
-    - Run several different OS on a single machine
-- Isolation
-    - Keep the VMs separated as error container
-    - Fault tolerant
-- Maintenance
-    - Easy to deploy, backup, clone, (live) migrate
-- Security
-    - VM introspection
-    - Antivirus out of the OS
+#### Consolidation
+- Run several different OS on a single machine
+
+#### Isolation
+- Keep the VMs separated as error container
+- Fault tolerant
+
+#### Maintenance
+- Easy to deploy, backup, clone, (live) migrate
+
+#### Security
+- VM introspection (VMI)
+- Antivirus out of the OS
 ---
 
-## Defination ##
+## Definition ##
 
-> The act of creating a virtual (rather than actual) version of something, including virtual computer hardware platforms, storage devices, and computer network resources. (wiki)
+> The act of creating a **virtual (rather than actual) version of something**, including virtual computer hardware platforms, storage devices, and computer network resources. (wiki)
 
-> A layer mapping its visible interface and resources onto the interface and resources of the underlying layer or system on which it is implemented (CMU)
+> **A layer mapping** its visible interface and resources onto the interface and resources of the underlying layer or system on which it is implemented (CMU)
 
-> An enfficient, isolated duplicate of the real machine [Formal Requirements for Virtualizable Third Generation Architectures](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf)
-
+> An enfficient, isolated **duplicate of the real machine** ([Formal Requirements for Virtualizable Third Generation Architectures](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf))
 - Efficiency
     - Innocuous instructions should execute directly on hardware
 - Resource control
@@ -167,7 +167,9 @@ Histroy
 ![](https://silentming.net/images/2018/20180613virtualization00.png)
 
 * Domain/VM (Virtual Machine)
+
 * Guest VM / Guest OS / Guest App
+
 * Hypervisor / VMM (VM Monitor) / host
 
 ---
@@ -176,7 +178,7 @@ Histroy
 
 ![](https://silentming.net/images/2018/20180613virtualization01.png)
 
-* Who manages hardware? (Type-1: Hypervisor, Type-2: Host Kernel)
+Who manages hardware? (Type-1: Hypervisor, Type-2: Host Kernel)
 * Type-1: Xen
     * Own scheduler, I/O Driver...
 * Type-2: Kvm
@@ -202,15 +204,17 @@ Histroy
 
 ## Approach of Virtualization ##
 
-|Approach|Traditional Full Virtualization|Para-Virtualization|Hardware-assistant Virtualization|
+|Approach|Traditional Full Virtualization|Para-Virtualization|Hardware-assistant Virtualization<hr>|
 |:---|:---|:---|:---|
-|CPU|Binary Rewriting|Using hypercall|Root/Non-root (VT-x); host mode & guest mode (AMD-v), EL2 (ARM)|
-|Memory|Software Emluation|Shadow Page Table|Extended PT (VT-x); Nested PT(AMD-v); EL2 translation table (ARM)|
+|CPU|Binary Rewriting|Using hypercall|Root/Non-root (VT-x)<br> host mode & guest mode (AMD-v)<br> EL2 (ARM)<hr>|
+|Memory|Software Emluation|Shadow Page Table|Extended PT (VT-x)<br> Nested PT(AMD-v)<br> EL2 translation table (ARM)<hr>|
 |I/O|Software Emluation|Para / virt I/O (Front & Back-end)|Singe Root I/O Virtualization|
 
 ---
 
 ## Approach of Virtualization cont'd ##
+
+#### Software Emulation
 
 ```c
 /* Complete Machine Simulation */
@@ -237,11 +241,11 @@ for (;;) {
 
 # Type-2 Virtualization on ARMv8 #
 
-|Approach|Traditional Full Virtualization|Para-Virtualization|Hardware-assistant Virtualization|
+|Approach|Traditional Full Virtualization|Para-Virtualization|Hardware-assistant Virtualization<hr> |
 |:---|:---|:---|:---|
-|CPU|Binary Rewriting|Using hypercall|Root/Non-root (VT-x); host mode & guest mode (AMD-v), **EL2 (ARM)**|
-|Memory|Software Emluation|Shadow Page Table|Extended PT (VT-x); Nested PT(AMD-v); **EL2 translation table (ARM)**|
-|I/O|Software Emluation|**Para / virt I/O (Front & Back-end)**|Singe Root I/O Virtualization|
+| CPU|Binary Rewriting|Using hypercall | Root/Non-root (VT-x)<br> host mode & guest mode (AMD-v)<br> **EL2 (ARM)** <hr> |
+| Memory|Software Emluation | Shadow Page Table | Extended PT (VT-x)<br> Nested PT(AMD-v)<br> **EL2 translation table (ARM)** <hr> |
+| I/O|Software Emluation | Para / **virt I/O (Front & Back-end)** | Singe Root I/O Virtualization |
 
 ---
 
@@ -270,8 +274,11 @@ for (;;) {
 ## Challenges
 
 1. Privilege instructions in guest APP traps into which level?
+
 2. Privilege level of Guest OS? (Hypervisor has highest privilege)
+
 3. Guest OS need physical memory.
+
 4. I/O devices need to be shared by different VMs.
 
 ---
@@ -288,12 +295,88 @@ for (;;) {
 
 ---
 
+### CPU Virtualization - ARMv8 Virtualization Support
+
+#### Hypervisor Configuration Register (HCR\_EL2)
+
+* **Purpose**: Provides configuration control for virtualization, including whether various Non- secure operations are trapped to EL2.<br>HCR_EL2 is part of the Hypervisor and virtualization registers functional group.
+
+> ARM&copy; Cortex&copy;-A73 MPCore Processor revision: r0p2
+> Technical Reference Manual
+> 4.3.43 Hypervisor Configuration Register
+
+---
+
+### CPU Virtualization cont'd
+
+* $LINUX/arch/arm64/kvm/hyp/entry.Sentry.S
+```
+ENTRY(__guest_enter)
+	// x0: vcpu
+	// x1: host context
+	// x2-x17: clobbered by macros
+	// x18: guest context
+
+	// Store the host regs
+    ...
+
+	// Restore guest regs x0-x17
+	ldp	x0, x1,   [x18, #CPU_XREG_OFFSET(0)]
+    ...
+	
+	// Restore guest regs x19-x29, lr
+	restore_callee_saved_regs x18
+
+	// Restore guest reg x18
+	ldr	x18,      [x18, #CPU_XREG_OFFSET(18)]
+
+	// Do not touch any register after this!
+	eret
+ENDPROC(__guest_enter)
+```
+
+---
+
+### CPU Virtualization cont'd
+
+$LINUX/arch/arm64/kvm/hyp/entry.Sentry.S
+```
+ENTRY(__guest_exit)
+	// x0: return code
+	// x1: vcpu
+	// x2-x29,lr: vcpu regs
+	// vcpu x0-x1 on the stack
+    ...
+
+	// Store the guest regs x2 and x3
+	// Retrieve the guest regs x0-x1 from the stack
+	// Store the guest regs x0-x1 and x4-x18
+	// Store the guest regs x19-x29, lr
+
+	get_host_ctxt	x2, x3
+
+	// Now restore the host regs
+	restore_callee_saved_regs x2
+
+	// If the exception took place, restore the EL1 exception
+	// context so that we can report some information.
+	msr	elr_el2, x2
+	msr	esr_el2, x3
+	msr	spsr_el2, x4
+	orr	x0, x0, x5
+1:	ret
+ENDPROC(__guest_exit)
+```
+
+---
+
 ### Memory Virtualization - EL2 Translation Table
 
 ![](https://silentming.net/images/2018/20180613virtualization05.png)
 
 * An independant translation table in EL2
 * GVA -> GPA -> HPA
+ * VA -> IPA (Intermediate Physical Address) -> PA
 
 ---
 
