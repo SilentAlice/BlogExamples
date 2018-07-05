@@ -309,7 +309,7 @@ for (;;) {
 
 ### CPU Virtualization cont'd
 
-* $LINUX/arch/arm64/kvm/hyp/entry.Sentry.S
+$LINUX/arch/arm64/kvm/hyp/entry.S
 ```
 ENTRY(__guest_enter)
 	// x0: vcpu
@@ -339,7 +339,7 @@ ENDPROC(__guest_enter)
 
 ### CPU Virtualization cont'd
 
-$LINUX/arch/arm64/kvm/hyp/entry.Sentry.S
+$LINUX/arch/arm64/kvm/hyp/entry.S
 ```
 ENTRY(__guest_exit)
 	// x0: return code
